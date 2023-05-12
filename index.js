@@ -12,7 +12,12 @@ app.use(express.json());
 app.use(cors());
 app.use(logger);
 
-const subscribeMessage = () => {};
+const subscribeMessage = (req, res) => {
+  res.send({
+    code: 200,
+    data: { message: "成功" },
+  });
+};
 // 首页
 app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
@@ -34,7 +39,7 @@ app.post("/api/count", async (req, res) => {
   });
 });
 
-app.post("subscribeMessage", subscribeMessage);
+app.post("/subscribeMessage", subscribeMessage);
 app.get("/subscribeMessage", subscribeMessage);
 // 获取计数
 app.get("/api/count", async (req, res) => {
