@@ -12,6 +12,7 @@ app.use(express.json());
 app.use(cors());
 app.use(logger);
 
+const subscribeMessage = () => {};
 // 首页
 app.get("/", async (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
@@ -33,6 +34,8 @@ app.post("/api/count", async (req, res) => {
   });
 });
 
+app.post("subscribeMessage", subscribeMessage);
+app.get("/subscribeMessage", subscribeMessage);
 // 获取计数
 app.get("/api/count", async (req, res) => {
   const result = await Counter.count();
